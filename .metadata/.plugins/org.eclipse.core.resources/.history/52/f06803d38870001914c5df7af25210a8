@@ -1,0 +1,11 @@
+package com.wipro.payroll.dao;
+
+import java.util.List;
+
+import com.wipro.payroll.model.PayrollBean;
+
+public interface Payrolldao {
+
+	String doRegister(PayrollBean payroll);
+	String dologin(PayrollBean payroll)
+}

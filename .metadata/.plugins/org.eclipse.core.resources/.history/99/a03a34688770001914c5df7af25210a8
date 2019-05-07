@@ -1,0 +1,52 @@
+package com.wipro.payroll.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.wipro.payroll.model.PayrollBean;
+import com.wipro.payroll.service.payrollservice;
+
+@Controller
+public class PayrollController {
+
+	@Autowired
+	private payrollservice employeeService;
+
+	@RequestMapping(value = "/start", method = RequestMethod.GET)
+	public String init(Model model) {
+		model.addAttribute("msg", "Please Enter Your Details");
+		return "employee";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String doRegister(Model model, @ModelAttribute("PayrollBean") PayrollBean payrollBean) {
+		if (payrollBean != null && payrollBean.getName() != null && payrollBean.getUsername() != null && payrollbean.getPassword()!= null && payrollben.getCpassword()!=null)
+				 {
+			model.addAttribute("msg", "Registered Successfully");
+			return payrollservice.doRegister(payrollBean);
+		} else {
+			model.addAttribute("error", "Error Occured");
+			return "error";
+		}
+	}
+
+	
+	
+
+	@RequestMapping(value = "/show", method = RequestMethod.POST)
+	public String listAllEmployees(Model model) {
+		model.addAttribute("Employee", employeeService.getAllEmployee());
+		return "show";
+	}
+
+	@RequestMapping(value = "/fetch", method = RequestMethod.POST)
+	public String getEmployeeIds(Model model) {
+		model.addAttribute("Username", payrollservice.getUserame());
+		return "success";
+	}
+
+}

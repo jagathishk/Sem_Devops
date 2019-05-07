@@ -1,0 +1,13 @@
+package com.wipro.payroll.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class PayrollController {
+	@RequestMapping(value="/")
+	public String doStart(){
+		return "login";
+	}
+
+}

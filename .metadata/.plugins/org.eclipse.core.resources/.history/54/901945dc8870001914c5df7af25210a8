@@ -1,0 +1,11 @@
+package com.wipro.payroll.service;
+
+
+import java.util.List;
+
+import com.wipro.payroll.model.PayrollBean;
+public interface payrollservice {
+
+
+	String doRegister(PayrollBean payroll);
+}
